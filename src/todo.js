@@ -1,14 +1,17 @@
-const functionOne = () => {
+
     const library = [];
 
     function ToDo(title, description, dueDate, priority){
         return {title, description, dueDate, priority}
     }
 
-    const task1 = ToDo('Laundry', 'I have to clean my clothes', '34/324/234', 'Immediately');
+    export const task1 = ToDo('Laundry', 'I have to clean my clothes', '34/324/234', 'Immediately');
 
-    console.table([task1]);
+   for(let key in task1){
+    console.log(task1[key]);
+   }
+
+
     
-}
 
-export{ functionOne };
+
