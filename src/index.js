@@ -8,6 +8,8 @@ const listContainer = document.querySelector('.list-container');
 function listToDom(){
     const listBox = document.createElement('div');
     listBox.classList.add('list-box');
+    
+    
 
     const listTitle = document.createElement('div');
     listTitle.classList.add('list')
@@ -24,6 +26,15 @@ function listToDom(){
     listBox.appendChild(listDueDate);
 
     listContainer.appendChild(listBox);
+
+    //hidden content
+    const hiddenContent = document.querySelector('.hidden');
+
+    //button for list
+
+    listBox.addEventListener('click', () => {
+        hidden.classList.toggle('show');
+    })
     
 }
 
