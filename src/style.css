@@ -56,6 +56,7 @@ footer{
     padding:40px 20px;
     align-items:center;
     flex-direction:column;
+    text-align:center;
 
 }
 
@@ -64,7 +65,27 @@ footer{
     display:flex;
     padding:10px;
     width:70%;
-    justify-content: space-around;
+    align-items:center;
+    cursor: pointer;
+    flex-direction:column;
+    border-radius:20px;
+}
 
+.list-content{
+    display:flex;
+    justify-content:space-between;
+    width:60%;
+    padding:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+.show{
+    display:flex;
+    justify-content: space-between;
+    padding:20px;
+    width:60%;
 }
 
