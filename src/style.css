@@ -53,4 +53,18 @@ footer{
 
 .list-container{
     display:flex;
+    padding:40px 20px;
+    align-items:center;
+    flex-direction:column;
+
 }
+
+.list-box{
+    border: 1px solid #000;
+    display:flex;
+    padding:10px;
+    width:70%;
+    justify-content: space-around;
+
+}
+
