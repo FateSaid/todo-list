@@ -4,6 +4,7 @@ html, body{
     overflow:hidden;
 }
 
+
 .container{
     border: 1px solid #000;
     min-height:100vh;
@@ -60,6 +61,15 @@ footer{
 
 }
 
+.list-container-header{
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+}
+
+
+
+
 .list-box{
     border: 1px solid #000;
     display:flex;
@@ -68,14 +78,15 @@ footer{
     align-items:center;
     cursor: pointer;
     flex-direction:column;
-    border-radius:20px;
+    border-radius:10px;
+    margin:10px;
 }
 
 .list-content{
     display:flex;
     justify-content:space-between;
     width:60%;
-    padding:20px;
+    padding:5px 10px;
 }
 
 .hidden{
@@ -87,5 +98,24 @@ footer{
     justify-content: space-between;
     padding:20px;
     width:60%;
+    border-top:1px solid black;
 }
 
+
+
+.form-group{
+    display:flex;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+label{
+    width:100%;
+    margin-right:15px;
+}
+
+input, textarea{
+    flex:1;
+    padding: 8px;
+    box-sizing: border-box;
+}

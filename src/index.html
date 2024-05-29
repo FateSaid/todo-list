@@ -17,7 +17,10 @@
                 </div>
                 <div class="main-content">
                     <div class="list-container">
-                        <h2>To-Do List</h2>
+                        <div class="list-container-header">
+                            <h2>To-Do List</h2>
+                            <div class="add-list"><button class="plus">Add</button></div>
+                        </div>
 
                     </div>
                 </div>
@@ -28,18 +31,18 @@
 
     <dialog>
         <form>
-            <div>
+            <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="dueDate">Due Date</label>
                 <input type="number" id="dueDate">
             </div>
-            <div>
+            <div class="form-group">Description
                 <textarea name="description" id="description" maxlength="20"></textarea>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="priority">Priority</label>
                 <select name="priority" id="priority">
                     <option value="low">Low</option>

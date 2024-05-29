@@ -1,51 +1,59 @@
 import './style.css';
-import {task1 } from './todo.js';
+import {listToDom, addBtn, submitBtn, clearForm } from './todo.js';
+import Plus from './plus.svg';
+
+const library = [];
 
 
-const listContainer = document.querySelector('.list-container');
 
+function ToDo(title, description, dueDate, priority){              //factory function
+        return {title, description, dueDate, priority}
+    }
 
-function listToDom(){
-    const listBox = document.createElement('div');
-    listBox.classList.add('list-box');
-    
-    const listContent = document.createElement('div');
-    listContent.classList.add('list-content');
+function addLibrary(title, description, dueDate, priority){
+    const task = ToDo(title, description,dueDate,priority);
+    library.push(task);
 
-    const listTitle = document.createElement('div');
-    listContent.appendChild(listTitle);
-
-    const listDescription = document.createElement('div');
-
-    const listDueDate = document.createElement('div');
-    listContent.appendChild(listDueDate);
-
-    const listPriority = document.createElement('div');
-
-    listTitle.textContent = task1.title;
-    listDueDate.textContent = task1.dueDate;
-
-    listBox.appendChild(listContent);
-    listBox.appendChild(listContent);
-
-    listContainer.appendChild(listBox);
-
-    //hidden content
-    const hiddenContent = document.createElement('div');
-    hiddenContent.classList.add('hidden');
-
-    listDescription.textContent = task1.description;
-    listPriority.textContent = task1.priority;
-    hiddenContent.appendChild(listDescription);
-    hiddenContent.appendChild(listPriority);
-    listBox.appendChild(hiddenContent);
-    
-    //button for list
-
-    listBox.addEventListener('click', () => {
-        hiddenContent.classList.toggle('show');
-    })
-    
 }
 
-listToDom();
+
+
+
+
+addBtn();
+
+
+function libraryToDOM(lib){
+    lib.forEach(obj => {
+        console.log(obj.title, obj.description, obj.dueDate, obj.priority);
+    })
+}
+
+
+
+
+
+submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const dialog = document.querySelector('dialog');
+
+    const titleDialog = document.getElementById('title').value;
+    const descriptionDialog = document.getElementById('description').value;
+    const dueDateDialog = document.getElementById('dueDate').value;
+    const priorityDialog = document.getElementById('priority').value;
+    addLibrary(titleDialog, descriptionDialog, dueDateDialog, priorityDialog);
+    listToDom(titleDialog, descriptionDialog, dueDateDialog, priorityDialog);
+    clearForm();
+    dialog.close();
+
+});
+
+
+    
+
+
+
+    
+
+
