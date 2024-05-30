@@ -42,9 +42,15 @@ function listToDom(title, description, dueDate, priority){
 
     listBox.addEventListener('click', () => {
         hiddenContent.classList.toggle('show');
-    })
+    });
+
+    //delete button
+
+   
     
 }
+
+// add to-do list button
 
 function addBtn(){
     const addListBtn = document.querySelector('.plus');
@@ -54,6 +60,8 @@ function addBtn(){
     });
 }
 
+//dialog submit button
+
 const submitBtn = document.querySelector('button[type="submit"]');
 
 function clearForm(){
@@ -61,4 +69,44 @@ function clearForm(){
     form.reset();
 }
 
-export {listToDom, addBtn, submitBtn, clearForm};
+function submitAction(){
+    const dialog = document.querySelector('dialog');
+
+    const titleDialog = document.getElementById('title').value;
+    const descriptionDialog = document.getElementById('description').value;
+    const dueDateDialog = document.getElementById('dueDate').value;
+    const priorityDialog = document.getElementById('priority').value;
+    listToDom(titleDialog, descriptionDialog, dueDateDialog, priorityDialog);
+    clearForm();
+    dialog.close();
+}
+
+// new project button
+
+function newProject(){
+    const newProjectBtn = document.querySelector('.new-project');
+    newProjectBtn.addEventListener('click', (e)=> {
+        e.preventDefault();
+    
+        const projectList = document.createElement('div');
+        projectList.classList.add('project-list');
+    
+    
+        const project = document.querySelector('.project');
+    
+        const captureText = document.getElementById('projectN');
+    
+        projectList.textContent = captureText.value;
+    
+        
+        project.appendChild(projectList);
+
+        clearForm();
+        
+    } );
+    
+}
+
+
+
+export {listToDom, addBtn, submitBtn, clearForm, newProject, submitAction};

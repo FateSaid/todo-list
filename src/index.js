@@ -1,8 +1,17 @@
 import './style.css';
-import {listToDom, addBtn, submitBtn, clearForm } from './todo.js';
-import Plus from './plus.svg';
+import {listToDom, addBtn, submitBtn, newProject, submitAction } from './todo.js';
 
-const library = [];
+
+const project = {};
+
+function createProject(projectName, ...toDoList){
+    if(!projectName || typeof projectName !== 'string'){
+        return;
+    }
+
+    obj[projectName] = toDoList;
+}
+
 
 
 
@@ -12,9 +21,10 @@ function ToDo(title, description, dueDate, priority){              //factory fun
 
 function addLibrary(title, description, dueDate, priority){
     const task = ToDo(title, description,dueDate,priority);
-    library.push(task);
+    project.push(task);
 
 }
+
 
 
 
@@ -31,24 +41,18 @@ function libraryToDOM(lib){
 
 
 
-
+//submit button for dialog
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-
-    const dialog = document.querySelector('dialog');
-
-    const titleDialog = document.getElementById('title').value;
-    const descriptionDialog = document.getElementById('description').value;
-    const dueDateDialog = document.getElementById('dueDate').value;
-    const priorityDialog = document.getElementById('priority').value;
-    addLibrary(titleDialog, descriptionDialog, dueDateDialog, priorityDialog);
-    listToDom(titleDialog, descriptionDialog, dueDateDialog, priorityDialog);
-    clearForm();
-    dialog.close();
+    submitAction();
+    
 
 });
 
+//project button
+
+newProject();
 
     
 
