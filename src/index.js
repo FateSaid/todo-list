@@ -50,6 +50,10 @@ submitBtn.addEventListener('click', (e) => {
 
 });
 
+
+
+
+
 //project button
 
 newProject();

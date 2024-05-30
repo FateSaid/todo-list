@@ -50,10 +50,19 @@ function listToDom(title, description, dueDate, priority){
    delBtn.classList.add('delete-button');
    delBtn.textContent = 'Delete';
    listContent.appendChild(delBtn);
+   delBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    listBox.remove();
+   });
 
 
     
 }
+
+
+
+
+
 
 // add to-do list button
 
