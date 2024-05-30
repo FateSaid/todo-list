@@ -1,5 +1,5 @@
 import './style.css';
-import {listToDom, addBtn, submitBtn, newProject, submitAction } from './todo.js';
+import {listToDom, addBtn, submitBtn,cancelBtn, newProject, submitAction } from './todo.js';
 
 
 const project = {};
@@ -48,6 +48,12 @@ submitBtn.addEventListener('click', (e) => {
     submitAction();
     
 
+});
+
+//cancel button for dialog
+
+cancelBtn.addEventListener('click', ()=>{
+    dialog.close();
 });
 
 

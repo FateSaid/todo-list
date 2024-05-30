@@ -24,7 +24,6 @@ function listToDom(title, description, dueDate, priority){
     listDueDate.textContent = dueDate;
 
     listBox.appendChild(listContent);
-    listBox.appendChild(listContent);
 
     listContainer.appendChild(listBox);
 
@@ -95,6 +94,11 @@ function submitAction(){
     dialog.close();
 }
 
+// dialog cancel
+
+const cancelBtn = document.querySelector('button[type="cancel"]');
+
+
 // new project button
 
 function newProject(){
@@ -123,4 +127,4 @@ function newProject(){
 
 
 
-export {listToDom, addBtn, submitBtn, clearForm, newProject, submitAction};
+export {listToDom, addBtn, submitBtn,cancelBtn, clearForm, newProject, submitAction};
