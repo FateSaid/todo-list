@@ -117,7 +117,14 @@ function newProject(){
         const captureText = document.getElementById('projectN');
     
         projectList.textContent = captureText.value;
-    
+
+        const delProjectBtn = document.createElement('button');
+        delProjectBtn.classList.add('delete-project-button');
+        delProjectBtn.textContent = 'Delete';
+        projectList.appendChild(delProjectBtn);
+        delProjectBtn.addEventListener('click', ()=>{
+            projectList.remove();
+        })
         
         project.appendChild(projectList);
 
