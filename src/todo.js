@@ -46,7 +46,12 @@ function listToDom(title, description, dueDate, priority){
 
     //delete button
 
-   
+   const delBtn = document.createElement('button');
+   delBtn.classList.add('delete-button');
+   delBtn.textContent = 'Delete';
+   listContent.appendChild(delBtn);
+
+
     
 }
 
