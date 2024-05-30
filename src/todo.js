@@ -82,6 +82,8 @@ function clearForm(){
     form.reset();
 }
 
+//dialog
+
 function submitAction(){
     const dialog = document.querySelector('dialog');
 
@@ -96,7 +98,7 @@ function submitAction(){
 
 // dialog cancel
 
-const cancelBtn = document.querySelector('button[type="cancel"]');
+const cancelBtn = document.getElementById('cancelBtn');
 
 
 // new project button

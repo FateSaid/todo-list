@@ -52,7 +52,9 @@ submitBtn.addEventListener('click', (e) => {
 
 //cancel button for dialog
 
-cancelBtn.addEventListener('click', ()=>{
+cancelBtn.addEventListener('click', (e)=>{
+    const dialog = document.querySelector('dialog');
+    e.preventDefault();
     dialog.close();
 });
 
