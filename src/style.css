@@ -53,3 +53,16 @@ header, footer{
 .project-list:hover{
     opacity:0.5;
 }
+
+.form-group{
+    margin: 8px;
+    text-align: left;
+}
+
+input, textarea{
+    display: flex;
+}
+
+.form-list{
+    padding: 20px;
+}
