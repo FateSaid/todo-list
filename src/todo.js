@@ -1,3 +1,9 @@
+const library = [];
+
+function Project(title){
+    return {title}
+}
+
 function List(title, description, dueDate, priority){
     return {title, description, dueDate, priority}
 }
@@ -23,6 +29,7 @@ function createList(){
 
     addBtn.addEventListener('click', ()=>{
         dialog.showModal();
+
     });
 
     cancelBtn.addEventListener('click', (e)=>{
@@ -52,13 +59,40 @@ function createProject(){
         newProj.classList.add('project-list');
         newProj.textContent = projectText.value;
         sidebarContent.appendChild(newProj);
+
+        //object project
+
+        const projectObj = Project(projectText.value);
+        library.push(projectObj);
+    }
+
+    function createOption(){
+        const select = document.getElementById('projectTitle');
+        const optionAvailable = document.querySelectorAll('.option-item');
+        
+        const projectNames = library.map(element => element.title);
+        console.log(optionAvailable);
+
+        projectNames.forEach(element => {
+            if(Array.from(optionAvailable).some(op => op.textContent.includes(element))){
+                return
+            } else{
+                const option = document.createElement('option');
+                option.classList.add('option-item');
+                option.value = element;
+                option.textContent = element;
+                select.appendChild(option);
+            }
+        });
     }
 
     addProjectBtn.addEventListener('click', (e)=>{
         e.preventDefault();
        newProject();
+       createOption();
        form.reset();
     });
+    
     
 }
 
