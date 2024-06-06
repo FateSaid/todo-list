@@ -25,7 +25,6 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         
     });
 
-    console.log(toDoList);
     
     for(let i = 0; i < arr.length; i++){
         const div = document.createElement('div');
