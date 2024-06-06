@@ -14,6 +14,18 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
     let arr = [listTitle, listDescription, listDueDate, listPriority];
     const totalDiv = document.createElement('div');
     totalDiv.classList.add('list');
+
+    const delBtn = document.createElement('button');
+    delBtn.classList.add('delete-list-button');
+    delBtn.textContent = 'Delete';
+    delBtn.addEventListener('click', ()=>{
+        const index = toDoList.findIndex( item => item.project === totalDiv.project);
+        toDoList.splice(index, 1);
+        totalDiv.remove();
+        
+    });
+
+    console.log(toDoList);
     
     for(let i = 0; i < arr.length; i++){
         const div = document.createElement('div');
@@ -22,7 +34,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         totalDiv.appendChild(div);
     }
     
-
+    totalDiv.appendChild(delBtn);
     const maincontent = document.querySelector('.main-content');
 
     maincontent.appendChild(totalDiv);
