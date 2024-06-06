@@ -30,10 +30,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
 
 function createList(){
     const dialog = document.querySelector('dialog');
-    const form = document.querySelector('form');
+    const form = document.querySelector('.form-list');
     const addBtn = document.querySelector('.add');
-
-    const mainContain = document.querySelector('.main-content');
 
     const submitBtn = document.querySelector('button[type="submit"]');
     const cancelBtn = document.querySelector('button[type="cancel"]');
