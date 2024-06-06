@@ -101,6 +101,35 @@ function createProject(){
         const newProj = document.createElement('div');
         newProj.classList.add('project-list');
         newProj.textContent = projectText.value;
+        
+        // delete button project
+
+        const delProjectBtn = document.createElement('button');
+        delProjectBtn.classList.add('project-delete-button');
+        delProjectBtn.textContent = 'Delete';
+        newProj.appendChild(delProjectBtn);
+
+        
+
+        
+
+        delProjectBtn.addEventListener('click', ()=>{
+            const allOption = document.querySelectorAll('#projectTitle .option-item');
+            allOption.forEach(option => {
+                if(option.value === projectObj.title){
+                    option.remove();
+                };
+            });
+            const index = library.findIndex(item => item.title === newProj.title);
+            library.splice(index, 1);
+            newProj.remove();
+            
+            
+            
+        });
+
+        
+
         sidebarContent.appendChild(newProj);
 
         //object project
@@ -120,6 +149,10 @@ function createProject(){
 
     }
 
+    
+
+    
+
     function createOption(){
         const select = document.getElementById('projectTitle');
         const optionAvailable = document.querySelectorAll('.option-item');
@@ -135,6 +168,7 @@ function createProject(){
                 option.value = element;
                 option.textContent = element;
                 select.appendChild(option);
+
             }
         });
     }
