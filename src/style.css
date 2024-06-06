@@ -59,7 +59,7 @@ header, footer{
     text-align: left;
 }
 
-input, textarea{
+.form-group input, textarea{
     display: flex;
 }
 
