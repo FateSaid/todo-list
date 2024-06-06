@@ -39,8 +39,7 @@ function createList(){
     const cancelBtn = document.querySelector('button[type="cancel"]');
 
     function newList(){
-        const newL = document.createElement('div');
-        newL.classList.add('list');
+        
 
         const listTitle = document.getElementById('title').value;
 
@@ -54,9 +53,10 @@ function createList(){
 
         const objList = List(listTitle, listDescription, listDueDate, listPriority, listprojectTitle);
         toDoList.push(objList);
+
+        console.log(objList);
         
-        newL.textContent = listTitle;
-        mainContain.appendChild(newL);
+        setInDom(listTitle, listDescription, listDueDate, listPriority);
 
         
     }
@@ -105,7 +105,7 @@ function createProject(){
             previousList.forEach(del => del.remove());
             const filtered = toDoList.filter(element => element.project === newProj.textContent);
             filtered.forEach(object => {
-                setInDom(object.title, object.description, object.listDueDate, object.priority);
+                setInDom(object.title, object.description, object.dueDate, object.priority);
             });
         });
 
