@@ -2,6 +2,8 @@ const library = [];
 
 const toDoList = [];
 
+
+
 function Project(title){
     return {title}
 }
@@ -34,9 +36,9 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
     }
     
     totalDiv.appendChild(delBtn);
-    const maincontent = document.querySelector('.main-content');
-
-    maincontent.appendChild(totalDiv);
+    const mainContent = document.querySelector('.main-content-list');
+    console.log(totalDiv);
+    mainContent.appendChild(totalDiv);
 }
 
 function createList(){
@@ -63,7 +65,7 @@ function createList(){
         const objList = List(listTitle, listDescription, listDueDate, listPriority, listprojectTitle);
         toDoList.push(objList);
 
-        console.log(objList);
+        
         
         setInDom(listTitle, listDescription, listDueDate, listPriority);
 
@@ -71,6 +73,7 @@ function createList(){
     }
 
     addBtn.addEventListener('click', ()=>{
+      
         dialog.showModal();
 
     });
@@ -89,24 +92,29 @@ function createList(){
 }
 
 function createProject(){
+
     const form = document.querySelector('.form-project');
     const addProjectBtn = document.querySelector('.add-project');
 
-    const sidebarContent = document.querySelector('.sidebar');
+    const sidebarContent = document.querySelector('.sidebar-content');
 
 
     const projectText = document.getElementById('project');
 
     function newProject(){
         const newProj = document.createElement('div');
+        const newProjTitle = document.createElement('div');
         newProj.classList.add('project-list');
-        newProj.textContent = projectText.value;
+        newProjTitle.textContent = projectText.value;
+        newProjTitle.classList.add('project-title');
         
         // delete button project
 
         const delProjectBtn = document.createElement('button');
         delProjectBtn.classList.add('project-delete-button');
         delProjectBtn.textContent = 'Delete';
+
+        newProj.appendChild(newProjTitle);
         newProj.appendChild(delProjectBtn);
 
         
@@ -139,39 +147,25 @@ function createProject(){
 
         
         newProj.addEventListener('click', ()=>{
+    
             const previousList = document.querySelectorAll('.list');
             previousList.forEach(del => del.remove());
-            const filtered = toDoList.filter(element => element.project === newProj.textContent);
+            const filtered = toDoList.filter(element => element.project === newProjTitle.textContent);
+            console.log(newProjTitle.textContent);
             filtered.forEach(object => {
                 setInDom(object.title, object.description, object.dueDate, object.priority);
             });
         });
 
-    }
-
-    
-
-    
-
-    function createOption(){
-        const select = document.getElementById('projectTitle');
-        const optionAvailable = document.querySelectorAll('.option-item');
         
-        const projectNames = library.map(element => element.title);
 
-        projectNames.forEach(element => {
-            if(Array.from(optionAvailable).some(op => op.textContent.includes(element))){
-                return
-            } else{
-                const option = document.createElement('option');
-                option.classList.add('option-item');
-                option.value = element;
-                option.textContent = element;
-                select.appendChild(option);
-
-            }
-        });
     }
+
+    
+
+    
+
+    
 
 
     addProjectBtn.addEventListener('click', (e)=>{
@@ -180,10 +174,33 @@ function createProject(){
        createOption();
        
        form.reset();
+
     });
     
     
 }
+
+function createOption(){
+    const select = document.getElementById('projectTitle');
+    const optionAvailable = document.querySelectorAll('.option-item');
+    
+    const projectNames = library.map(element => element.title);
+
+    projectNames.forEach(element => {
+        if(Array.from(optionAvailable).some(op => op.textContent.includes(element))){
+            return
+        } else{
+            const option = document.createElement('option');
+            option.classList.add('option-item');
+            option.value = element;
+            option.textContent = element;
+            select.appendChild(option);
+
+        }
+    });
+}
+
+
 
 
 export{createList, createProject}
