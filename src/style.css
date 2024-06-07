@@ -59,6 +59,18 @@ header, footer{
     width: 100%;
 }
 
+.addList button{
+    margin: 10px;
+    padding: 10px 20px;
+    border:none;
+    background-color: #472c07;
+    color:white;
+    border-radius: 25px;
+}
+.addList button:hover{
+    opacity:0.5;
+}
+
 .list, .project-list, .home{
     margin: 5px;
     width: 70%;
@@ -72,6 +84,16 @@ header, footer{
     border-radius: 25px;
     background: rgb(255,191,150);
     background: linear-gradient(90deg, rgba(255,191,150,1) 0%, rgba(255,255,255,1) 81%);
+    border:none;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.list button{
+    border:none;
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: #ee5454;
+    color:white;
 }
 
 .list:hover{
