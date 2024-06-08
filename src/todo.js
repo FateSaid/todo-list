@@ -1,4 +1,6 @@
-const library = [];
+
+
+const library = [{title:'Home'}];
 
 const toDoList = [];
 
@@ -34,10 +36,18 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         div.textContent = arr[i];
         totalDiv.appendChild(div);
     }
+
+    if(listPriority === 'low'){
+        totalDiv.classList.add('green');
+    } else if(listPriority === 'medium'){
+            totalDiv.classList.add('yellow');
+        } else if(listPriority === 'high'){
+            totalDiv.classList.add('red');
+        }
+    
     
     totalDiv.appendChild(delBtn);
-    const mainContent = document.querySelector('.main-content-list');
-    console.log(totalDiv);
+    const mainContent = document.querySelector('.main-content-list-item');
     mainContent.appendChild(totalDiv);
 }
 
@@ -73,7 +83,7 @@ function createList(){
     }
 
     addBtn.addEventListener('click', ()=>{
-      
+        createOption();
         dialog.showModal();
 
     });
@@ -136,6 +146,7 @@ function createProject(){
             
         });
 
+
         
 
         sidebarContent.appendChild(newProj);
@@ -156,6 +167,19 @@ function createProject(){
                 setInDom(object.title, object.description, object.dueDate, object.priority);
             });
         });
+
+        homeEvent();
+
+        function homeEvent(){
+            const home = document.querySelector('.home');
+            home.addEventListener('click', ()=>{
+                const previousList = document.querySelectorAll('.list');
+                previousList.forEach(del => del.remove());
+                toDoList.forEach(list => {
+                    setInDom(list.title, list.description, list.dueDate, list.priority);
+                });
+            });
+        }
 
         
 

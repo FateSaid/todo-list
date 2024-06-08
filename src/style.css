@@ -44,13 +44,37 @@ header, footer{
     background-color: #d6d3d1;
 }
 
+.sidebar-content{
+
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.main-content-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .main-content-list, .sidebar-content{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    
+    
+}
+
+
+
+.main-content-list-item{
     overflow:auto;
+    width: 100%;
+    height: 900px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    
 }
 
 .addList, .project-header{
@@ -84,7 +108,6 @@ header, footer{
     border-radius: 25px;
     background: rgb(255,191,150);
     background: linear-gradient(90deg, rgba(255,191,150,1) 0%, rgba(255,255,255,1) 81%);
-    border:none;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -102,6 +125,10 @@ header, footer{
 
 .home:hover{
     opacity: 0.5;
+}
+
+.project-list{
+    margin: 20px;
 }
 
 .project-list, .home{
@@ -127,4 +154,19 @@ header, footer{
 
 .form-list{
     padding: 20px;
+}
+
+.green{
+    border-color: green;
+    box-shadow: rgba(94, 241, 106, 0.2) 0px 8px 24px;
+}
+
+.red{
+    border-color: red;
+    box-shadow: rgba(241, 73, 61, 0.2) 0px 8px 24px;
+}
+
+.yellow{
+    border-color: yellow;
+    box-shadow: rgba(246, 248, 103, 0.2) 0px 8px 24px;
 }
