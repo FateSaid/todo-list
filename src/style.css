@@ -170,3 +170,8 @@ header, footer{
     border-color: yellow;
     box-shadow: rgba(246, 248, 103, 0.2) 0px 8px 24px;
 }
+
+.show{
+    text-decoration: line-through;
+    opacity: 0.5;
+}

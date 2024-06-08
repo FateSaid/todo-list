@@ -29,6 +29,17 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         
     });
 
+    function createCheck(){
+        const check = document.createElement('input');
+        check.setAttribute('type', 'checkbox');
+        totalDiv.appendChild(check);
+
+        check.addEventListener('click', ()=>{
+            totalDiv.classList.toggle('show');
+        });
+    }
+    createCheck();
+
     
     for(let i = 0; i < arr.length; i++){
         const div = document.createElement('div');
@@ -45,6 +56,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
             totalDiv.classList.add('red');
         }
     
+
+
     
     totalDiv.appendChild(delBtn);
     const mainContent = document.querySelector('.main-content-list-item');
