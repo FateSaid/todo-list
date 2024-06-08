@@ -16,6 +16,10 @@ function List(title, description, dueDate, priority, project){
 
 function setInDom(listTitle, listDescription, listDueDate, listPriority){
     let arr = [listTitle, listDescription, listDueDate, listPriority];
+
+    const visibleContent = document.createElement('div');
+    visibleContent.classList.add('visible');
+
     const totalDiv = document.createElement('div');
     totalDiv.classList.add('list');
 
@@ -32,7 +36,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
     function createCheck(){
         const check = document.createElement('input');
         check.setAttribute('type', 'checkbox');
-        totalDiv.appendChild(check);
+        visibleContent.appendChild(check);
 
         check.addEventListener('click', ()=>{
             totalDiv.classList.toggle('show');
@@ -40,13 +44,27 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
     }
     createCheck();
 
-    
+    const allHiddenDiv = document.createElement('div');
+    allHiddenDiv.classList.add('hidden');
     for(let i = 0; i < arr.length; i++){
-        const div = document.createElement('div');
         
-        div.textContent = arr[i];
-        totalDiv.appendChild(div);
+        if(i === 0 || i === 2){
+            const div = document.createElement('div');
+            
+            div.textContent = arr[i];
+            visibleContent.appendChild(div);
+        } else{
+            const hid = document.createElement('div');
+            
+            
+            hid.textContent = arr[i];
+            allHiddenDiv.appendChild(hid);
+        }
     }
+    
+    totalDiv.addEventListener('click', ()=>{
+        allHiddenDiv.classList.toggle('open');
+    });
 
     if(listPriority === 'low'){
         totalDiv.classList.add('green');
@@ -59,9 +77,16 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
 
 
     
-    totalDiv.appendChild(delBtn);
+    visibleContent.appendChild(delBtn);
     const mainContent = document.querySelector('.main-content-list-item');
+    totalDiv.appendChild(visibleContent);
     mainContent.appendChild(totalDiv);
+
+    totalDiv.appendChild(allHiddenDiv);
+
+    
+
+
 }
 
 function createList(){
