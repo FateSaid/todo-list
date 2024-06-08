@@ -15,13 +15,82 @@ function List(title, description, dueDate, priority, project){
 }
 
 function setInDom(listTitle, listDescription, listDueDate, listPriority){
-    let arr = [listTitle, listDescription, listDueDate, listPriority];
 
     const visibleContent = document.createElement('div');
     visibleContent.classList.add('visible');
 
     const totalDiv = document.createElement('div');
     totalDiv.classList.add('list');
+
+    const btnContainer = document.createElement('div');
+
+    //edit button
+
+    function editButton(){
+        const editBtn = document.createElement('button');
+        editBtn.classList.add('edit');
+        editBtn.textContent = 'Edit';
+        const dialogEdit = document.querySelector('.dialog-list-edit');
+        btnContainer.appendChild(editBtn);
+        editBtn.addEventListener('click', ()=>{
+            
+            dialogEdit.showModal();
+            
+        });
+        
+        const editSubmit = document.querySelector('button[type="editSubmit"]');
+        const form = document.querySelector('.form-edit');
+        
+        editSubmit.addEventListener('click', (e)=>{
+            e.preventDefault();
+            editList();
+            form.reset();
+            render();
+            dialogEdit.close();
+        });
+
+        function render(){
+            const previousList = document.querySelectorAll('.list');
+            previousList.forEach(del => del.remove());
+            toDoList.forEach(list => {
+                setInDom(list.title, list.description, list.dueDate, list.priority);
+            });
+        }
+
+        function editList(){
+            let theListTitle = document.querySelector('.title');
+            let editTitle = document.getElementById('title-edit').value;
+            let indexTitle = toDoList.findIndex(item => item.title === theListTitle.textContent);
+            toDoList[indexTitle].title = editTitle;
+
+            let theDueDate = document.querySelector('.dueDate');
+            let editDueDate = document.getElementById('dueDate-edit').value;
+            let indexDueDate = toDoList.findIndex(item => item.dueDate === theDueDate.textContent);
+            toDoList[indexDueDate].dueDate = editDueDate;
+
+            let theDescription = document.querySelector('.description');
+            let editDescription = document.getElementById('description-edit').value;
+            let indexDescription = toDoList.findIndex(item => item.description === theDescription.textContent);
+            toDoList[indexDescription].description = editDescription;
+
+            let thePriority = document.querySelector('.priority');
+            let editPriority = document.getElementById('priority-edit').value;
+            let indexPriority = toDoList.findIndex(item => item.priority === thePriority.textContent);
+            toDoList[indexPriority].priority = editPriority;
+
+        }
+        
+        const editCancel = document.querySelector('button[type="editCancel"]');
+        
+        editCancel.addEventListener('click', (e)=>{
+            e.preventDefault();
+            dialogEdit.close();
+        });
+    }
+
+    editButton();
+
+    //delete buttton
 
     const delBtn = document.createElement('button');
     delBtn.classList.add('delete-list-button');
@@ -32,6 +101,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         totalDiv.remove();
         
     });
+
+    btnContainer.appendChild(delBtn);
 
     function createCheck(){
         const check = document.createElement('input');
@@ -46,21 +117,32 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
 
     const allHiddenDiv = document.createElement('div');
     allHiddenDiv.classList.add('hidden');
-    for(let i = 0; i < arr.length; i++){
-        
-        if(i === 0 || i === 2){
-            const div = document.createElement('div');
-            
-            div.textContent = arr[i];
-            visibleContent.appendChild(div);
-        } else{
-            const hid = document.createElement('div');
-            
-            
-            hid.textContent = arr[i];
-            allHiddenDiv.appendChild(hid);
-        }
+    
+   
+
+    function initializeElement(){
+        const theTitle = document.createElement('div');
+        theTitle.textContent = listTitle;
+        theTitle.classList.add('title');
+        visibleContent.appendChild(theTitle);
+
+        const theDueDate = document.createElement('div');
+        theDueDate.textContent = listDueDate;
+        theDueDate.classList.add('dueDate');
+        visibleContent.appendChild(theDueDate)
+
+        const theDescription = document.createElement('div');
+        theDescription.textContent = listDescription;
+        theDescription.classList.add('description');
+        allHiddenDiv.appendChild(theDescription)
+
+        const thePriority = document.createElement('div');
+        thePriority.textContent = listPriority;
+        thePriority.classList.add('priority');
+        allHiddenDiv.appendChild(thePriority);
     }
+
+    initializeElement();
     
     totalDiv.addEventListener('click', ()=>{
         allHiddenDiv.classList.toggle('open');
@@ -76,8 +158,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
     
 
 
-    
-    visibleContent.appendChild(delBtn);
+
+    visibleContent.appendChild(btnContainer);
     const mainContent = document.querySelector('.main-content-list-item');
     totalDiv.appendChild(visibleContent);
     mainContent.appendChild(totalDiv);

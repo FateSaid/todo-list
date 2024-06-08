@@ -83,6 +83,42 @@
             </div> 
         </form>
     </dialog>
+    <dialog class="dialog-list-edit">
+        <form class="form-list form-edit">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title-edit">
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description-edit"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate-edit">
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority-edit">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <label for="projectTitle">Project Title</label>
+                <select name="project-title" id="projectTitle-edit">
+                
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="editSubmit">Submit</button>
+                <button type="editCancel">Cancel</button>
+            </div> 
+        </form>
+    </dialog>
     
 </body>
 </html>

@@ -91,6 +91,17 @@ header, footer{
     color:white;
     border-radius: 25px;
 }
+
+.edit{
+    margin: 10px;
+    padding: 5px 10px;
+    border:none;
+    color:white;
+    border-radius: 25px;
+    background-color: #6498f8;
+    margin: 5px;
+}
+
 .addList button:hover{
     opacity:0.5;
 }
@@ -119,7 +130,7 @@ header, footer{
 
 
 
-.list button{
+.list .delete-list-button{
     border:none;
     border-radius: 25px;
     padding: 5px 10px;
