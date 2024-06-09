@@ -45,7 +45,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
             e.preventDefault();
             editList();
             form.reset();
-            render();
+            
+            console.log(toDoList);
             dialogEdit.close();
         });
 
@@ -58,6 +59,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         }
 
         function editList(){
+
+
             let theListTitle = document.querySelector('.title');
             let editTitle = document.getElementById('title-edit').value;
             let indexTitle = toDoList.findIndex(item => item.title === theListTitle.textContent);
@@ -77,6 +80,12 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
             let editPriority = document.getElementById('priority-edit').value;
             let indexPriority = toDoList.findIndex(item => item.priority === thePriority.textContent);
             toDoList[indexPriority].priority = editPriority;
+
+            console.log(toDoList[indexTitle]);
+
+            createOption();
+
+            render();
 
         }
         
