@@ -38,58 +38,13 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
             
         });
         
-        const editSubmit = document.querySelector('button[type="editSubmit"]');
-        const form = document.querySelector('.form-edit');
         
-        editSubmit.addEventListener('click', (e)=>{
-            e.preventDefault();
-            editList();
-            form.reset();
-            
-            console.log(toDoList);
-            dialogEdit.close();
-        });
 
-        function render(){
-            const previousList = document.querySelectorAll('.list');
-            previousList.forEach(del => del.remove());
-            toDoList.forEach(list => {
-                setInDom(list.title, list.description, list.dueDate, list.priority);
-            });
-        }
-
-        function editList(){
-
-
-            let theListTitle = document.querySelector('.title');
-            let editTitle = document.getElementById('title-edit').value;
-            let indexTitle = toDoList.findIndex(item => item.title === theListTitle.textContent);
-            toDoList[indexTitle].title = editTitle;
-
-            let theDueDate = document.querySelector('.dueDate');
-            let editDueDate = document.getElementById('dueDate-edit').value;
-            let indexDueDate = toDoList.findIndex(item => item.dueDate === theDueDate.textContent);
-            toDoList[indexDueDate].dueDate = editDueDate;
-
-            let theDescription = document.querySelector('.description');
-            let editDescription = document.getElementById('description-edit').value;
-            let indexDescription = toDoList.findIndex(item => item.description === theDescription.textContent);
-            toDoList[indexDescription].description = editDescription;
-
-            let thePriority = document.querySelector('.priority');
-            let editPriority = document.getElementById('priority-edit').value;
-            let indexPriority = toDoList.findIndex(item => item.priority === thePriority.textContent);
-            toDoList[indexPriority].priority = editPriority;
-
-            console.log(toDoList[indexTitle]);
-
-            createOption();
-
-            render();
-
-        }
         
-        const editCancel = document.querySelector('button[type="editCancel"]');
+
+        
+        
+        const editCancel = document.getElementById('editCancel');
         
         editCancel.addEventListener('click', (e)=>{
             e.preventDefault();
@@ -355,6 +310,69 @@ function createOption(){
 }
 
 
+function editEvent(){
+    const editSubmit = document.getElementById('editSubmit');
+        const form = document.querySelector('.form-edit');
+        const dialogEdit = document.querySelector('.dialog-list-edit')
+        
+        editSubmit.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            editList();
+            form.reset();
+            
+            console.log(toDoList);
+            dialogEdit.close();
+            
+        });
+
+        function editList(){
+
+        
 
 
-export{createList, createProject}
+            let theListTitle = document.querySelector('.title');
+            let editTitle = document.getElementById('title-edit').value;
+            let indexTitle = toDoList.findIndex(item => item.title === theListTitle.textContent);
+            toDoList[indexTitle].title = editTitle;
+            theListTitle.textContent = editTitle;
+
+            let theDueDate = document.querySelector('.dueDate');
+            let editDueDate = document.getElementById('dueDate-edit').value;
+            let indexDueDate = toDoList.findIndex(item => item.dueDate === theDueDate.textContent);
+            toDoList[indexDueDate].dueDate = editDueDate;
+            theDueDate.textContent = editDueDate;
+
+            let theDescription = document.querySelector('.description');
+            let editDescription = document.getElementById('description-edit').value;
+            let indexDescription = toDoList.findIndex(item => item.description === theDescription.textContent);
+            toDoList[indexDescription].description = editDescription;
+            theDescription.textContent = editDescription;
+
+            let thePriority = document.querySelector('.priority');
+            let editPriority = document.getElementById('priority-edit').value;
+            let indexPriority = toDoList.findIndex(item => item.priority === thePriority.textContent);
+            toDoList[indexPriority].priority = editPriority;
+            thePriority.textContent = editPriority;
+
+
+            createOption();
+
+            render();
+
+        }
+
+        function render(){
+            const previousList = document.querySelectorAll('.list');
+            previousList.forEach(del => del.remove());
+            toDoList.forEach(list => {
+                setInDom(list.title, list.description, list.dueDate, list.priority);
+            });
+        }
+}
+
+
+
+
+
+export{createList, createProject, editEvent}
