@@ -118,7 +118,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         check.setAttribute('type', 'checkbox');
         visibleContent.appendChild(check);
 
-        check.addEventListener('click', ()=>{
+        check.addEventListener('click', (e)=>{
+            e.stopPropagation();
             totalDiv.classList.toggle('show');
         });
     }
