@@ -1,6 +1,5 @@
 import './style.css';
-import {createList, createProject, editEvent, today} from './todo.js';
-
+import {createList, createProject, editEvent, library, today} from './todo.js';
 
 
 
@@ -14,4 +13,8 @@ createProject();
 editEvent();
 
 today();
+
+
+
+console.log(library);
 

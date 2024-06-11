@@ -1,8 +1,12 @@
 import { format } from "date-fns";
 
 const library = [{title:'Home'}];
-
 const toDoList = [];
+
+
+
+
+
 
 
 
@@ -63,6 +67,9 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         const index = toDoList.findIndex( item => item.project === totalDiv.project);
         toDoList.splice(index, 1);
         totalDiv.remove();
+
+
+        
         
     });
 
@@ -220,7 +227,8 @@ function createProject(){
         delProjectBtn.addEventListener('click', ()=>{
             const allOption = document.querySelectorAll('#projectTitle .option-item');
             allOption.forEach(option => {
-                if(option.value === projectObj.title){
+                
+                if(option.value === newProj.textContent){
                     option.remove();
                 };
             });
@@ -241,6 +249,8 @@ function createProject(){
 
         const projectObj = Project(projectText.value);
         library.push(projectObj);
+        
+
 
         
         newProj.addEventListener('click', ()=>{
@@ -388,5 +398,63 @@ function today(){
 }
 
 
+function newProject(title){
 
-export{createList, createProject, editEvent, today}
+    const sidebarContent = document.querySelector('.sidebar-content');
+
+
+    const newProj = document.createElement('div');
+    const newProjTitle = document.createElement('div');
+    newProj.classList.add('project-list');
+    newProjTitle.textContent = title;
+    newProjTitle.classList.add('project-title');
+    
+    // delete button project
+
+    const delProjectBtn = document.createElement('button');
+    delProjectBtn.classList.add('project-delete-button');
+    delProjectBtn.textContent = 'Delete';
+
+    newProj.appendChild(newProjTitle);
+    newProj.appendChild(delProjectBtn);
+
+    
+
+    
+
+    delProjectBtn.addEventListener('click', ()=>{
+        const allOption = document.querySelectorAll('#projectTitle .option-item');
+        allOption.forEach(option => {
+            if(option.value === projectObj.title){
+                option.remove();
+            };
+        });
+        const index = library.findIndex(item => item.title === newProj.title);
+        library.splice(index, 1);
+        newProj.remove();
+        
+        
+        
+    });
+
+    sidebarContent.appendChild(newProj);
+
+    newProj.addEventListener('click', ()=>{
+    
+        const previousList = document.querySelectorAll('.list');
+        previousList.forEach(del => del.remove());
+        const filtered = toDoList.filter(element => element.project === newProjTitle.textContent);
+
+        filtered.forEach(object => {
+            setInDom(object.title, object.description, object.dueDate, object.priority);
+        });
+    });
+
+}
+    
+
+    
+
+
+
+export{createList, createProject, editEvent, today, library, toDoList}
