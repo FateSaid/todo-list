@@ -36,6 +36,9 @@
             <div class="project-list home">
                 Home
             </div>
+            <div class="today">
+                Today
+            </div>
         </div>
         <div class="main-content-list">
                 <div class="main-content-list-item">
@@ -48,19 +51,19 @@
         Footer
     </footer>
     <dialog class="dialog-list">
-        <form class="form-list">
+        <form action="https://httpbin.org/post" method="post" class="form-list">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title">
+                <input type="text" id="title" >
             </div>
             
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" id="description"></textarea>
+                <textarea name="description" id="description" maxlength="50"></textarea>
             </div>
             <div class="form-group">
                 <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate">
+                <input type="date" id="dueDate" >
             </div>
             <div class="form-group">
                 <label for="priority">Priority</label>
@@ -84,19 +87,19 @@
         </form>
     </dialog>
     <dialog class="dialog-list-edit">
-        <form class="form-list form-edit">
+        <form action="https://httpbin.org/post" method="post" class="form-list form-edit">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" id="title-edit">
+                <input type="text" id="title-edit" >
             </div>
             
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea name="description" id="description-edit"></textarea>
+                <textarea name="description" id="description-edit" maxlength="20"></textarea>
             </div>
             <div class="form-group">
                 <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate-edit">
+                <input type="date" id="dueDate-edit" >
             </div>
             <div class="form-group">
                 <label for="priority">Priority</label>
@@ -114,7 +117,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <button id="editSubmit">Submit</button>
+                <button id="editSubmit" type="button">Submit</button>
                 <button id="editCancel">Cancel</button>
             </div> 
         </form>

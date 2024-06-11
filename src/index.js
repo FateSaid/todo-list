@@ -1,6 +1,6 @@
 import './style.css';
-import {createList, createProject, editEvent} from './todo.js';
-import {format} from "date-fns";
+import {createList, createProject, editEvent, today} from './todo.js';
+
 
 
 
@@ -13,4 +13,5 @@ createProject();
 
 editEvent();
 
-console.log(format(new Date(), "MM-dd-yy"));
+today();
+

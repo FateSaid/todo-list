@@ -1,4 +1,4 @@
-import {format} from "date-fns";
+import { format } from "date-fns";
 
 const library = [{title:'Home'}];
 
@@ -32,8 +32,8 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         editBtn.textContent = 'Edit';
         const dialogEdit = document.querySelector('.dialog-list-edit');
         btnContainer.appendChild(editBtn);
-        editBtn.addEventListener('click', ()=>{
-            
+        editBtn.addEventListener('click', (e)=>{
+            e.preventDefault();
             dialogEdit.showModal();
             
         });
@@ -92,7 +92,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         visibleContent.appendChild(theTitle);
 
         const theDueDate = document.createElement('div');
-        theDueDate.textContent = format(listDueDate, 'MM-dd-yyyy');
+        theDueDate.textContent = listDueDate;
         theDueDate.classList.add('dueDate');
         visibleContent.appendChild(theDueDate)
 
@@ -151,7 +151,7 @@ function createList(){
 
         const listDescription = document.getElementById('description').value;
         
-        const listDueDate = format(document.getElementById('dueDate').value, 'MM-dd-yyyy');
+        const listDueDate = document.getElementById('dueDate').value;
 
         const listPriority = document.getElementById('priority').value;
 
@@ -167,10 +167,11 @@ function createList(){
         
     }
 
-    addBtn.addEventListener('click', ()=>{
+    addBtn.addEventListener('click', (e)=>{
+        e.preventDefault();
         createOption();
         dialog.showModal();
-
+        
     });
 
     cancelBtn.addEventListener('click', (e)=>{
@@ -338,7 +339,7 @@ function editEvent(){
             theListTitle.textContent = editTitle;
 
             let theDueDate = document.querySelector('.dueDate');
-            let editDueDate = format(document.getElementById('dueDate-edit').value, 'MM-dd-yyyy');
+            let editDueDate = document.getElementById('dueDate-edit').value;
             let indexDueDate = toDoList.findIndex(item => item.dueDate === theDueDate.textContent);
             toDoList[indexDueDate].dueDate = editDueDate;
             theDueDate.textContent = editDueDate;
@@ -371,8 +372,21 @@ function editEvent(){
         }
 }
 
+function today(){
+    const todayProject = document.querySelector('.today');
+
+    const currentDate = format(new Date(), 'yyyy-MM-dd');
+    todayProject.addEventListener('click', ()=>{
+        toDoList.forEach(item => {
+            if(item.dueDate === currentDate){
+                const previousList = document.querySelectorAll('.list');
+                previousList.forEach(del => del.remove());
+                setInDom(item.title, item.description, item.dueDate, item.priority);
+            }
+        });
+    });
+}
 
 
 
-
-export{createList, createProject, editEvent}
+export{createList, createProject, editEvent, today}
