@@ -1,4 +1,4 @@
-
+import {format} from "date-fns";
 
 const library = [{title:'Home'}];
 
@@ -92,7 +92,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         visibleContent.appendChild(theTitle);
 
         const theDueDate = document.createElement('div');
-        theDueDate.textContent = listDueDate;
+        theDueDate.textContent = format(listDueDate, 'MM-dd-yyyy');
         theDueDate.classList.add('dueDate');
         visibleContent.appendChild(theDueDate)
 
@@ -151,7 +151,7 @@ function createList(){
 
         const listDescription = document.getElementById('description').value;
         
-        const listDueDate = document.getElementById('dueDate').value;
+        const listDueDate = format(document.getElementById('dueDate').value, 'MM-dd-yyyy');
 
         const listPriority = document.getElementById('priority').value;
 
@@ -247,7 +247,7 @@ function createProject(){
             const previousList = document.querySelectorAll('.list');
             previousList.forEach(del => del.remove());
             const filtered = toDoList.filter(element => element.project === newProjTitle.textContent);
-            console.log(newProjTitle.textContent);
+    
             filtered.forEach(object => {
                 setInDom(object.title, object.description, object.dueDate, object.priority);
             });
@@ -321,7 +321,7 @@ function editEvent(){
             editList();
             form.reset();
             
-            console.log(toDoList);
+            
             dialogEdit.close();
             
         });
@@ -338,7 +338,7 @@ function editEvent(){
             theListTitle.textContent = editTitle;
 
             let theDueDate = document.querySelector('.dueDate');
-            let editDueDate = document.getElementById('dueDate-edit').value;
+            let editDueDate = format(document.getElementById('dueDate-edit').value, 'MM-dd-yyyy');
             let indexDueDate = toDoList.findIndex(item => item.dueDate === theDueDate.textContent);
             toDoList[indexDueDate].dueDate = editDueDate;
             theDueDate.textContent = editDueDate;
