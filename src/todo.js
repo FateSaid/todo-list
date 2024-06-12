@@ -4,10 +4,22 @@ const library = [{title:'Home'}];
 const toDoList = [];
 
 
+function setStorage(array, name){
+    let stringConvert = JSON.stringify(array);
+    localStorage.setItem(name, stringConvert);
+}
 
+function setObjStorage(obj, array){
+    const currentToDoList = localStorage.getItem(array);
+    const arrayToDoList = JSON.parse(currentToDoList);
+    arrayToDoList.push(obj);
+    const stringToDoList = JSON.stringify(arrayToDoList);
+    localStorage.setItem(array, stringToDoList);
 
+}
 
-
+setStorage(library, 'library');
+setStorage(toDoList, 'toDoList');
 
 
 function Project(title){
@@ -170,8 +182,9 @@ function createList(){
         
         
         setInDom(listTitle, listDescription, listDueDate, listPriority);
-
         
+
+        setObjStorage(objList, 'toDoList');
     }
 
     addBtn.addEventListener('click', (e)=>{
