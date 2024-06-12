@@ -1,8 +1,9 @@
 import { format } from "date-fns";
 
-const library = [{title:'Home'}];
+const library = [];
 const toDoList = [];
 
+                        
 
 function setStorage(array, name){
     if(!localStorage.getItem(name)){
@@ -11,10 +12,10 @@ function setStorage(array, name){
     } else{
         const stringArray = localStorage.getItem(name);
         const convertArray = JSON.parse(stringArray);
-        if(convertArray === '[{"title":"Home"}]'){
+        
             if(name === 'library'){
                 convertArray.forEach(item => {
-                    newProject(item.title);
+                    newProjectStorage(item.title);
                 });
             }else{
                 convertArray.forEach(item => {
@@ -24,7 +25,7 @@ function setStorage(array, name){
             convertArray.forEach(item => {
                 array.push(item);
             });
-        }
+        
         
 
         
@@ -91,7 +92,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         btnContainer.appendChild(editBtn);
         editBtn.addEventListener('click', (e)=>{
             e.preventDefault();
-            
+            createOption();
             dialogEdit.showModal();
             
         });
@@ -484,9 +485,12 @@ function today(){
 }
 
 
+
 function newProject(title){
 
-    const projectText = document.getElementById('project');
+    
+
+
 
     const sidebarContent = document.querySelector('.sidebar-content');
 
@@ -525,12 +529,85 @@ function newProject(title){
         
     });
 
-    const projectObj = Project(projectText.value);
-    library.push(projectObj);
-    setObjStorage(projectObj, 'library');
-    console.log(library);
+    const projectObj = Project(title);
 
-    sidebarContent.appendChild(newProj);
+        library.push(projectObj);
+        setObjStorage(projectObj, 'library');
+        sidebarContent.appendChild(newProj);
+
+    
+    
+    
+
+    
+
+    newProj.addEventListener('click', ()=>{
+    
+        const previousList = document.querySelectorAll('.list');
+        previousList.forEach(del => del.remove());
+        const filtered = toDoList.filter(element => element.project === newProjTitle.textContent);
+
+        filtered.forEach(object => {
+            setInDom(object.title, object.description, object.dueDate, object.priority);
+        });
+    });
+
+}
+
+function newProjectStorage(title){
+
+    
+
+
+
+    const sidebarContent = document.querySelector('.sidebar-content');
+
+
+    const newProj = document.createElement('div');
+    const newProjTitle = document.createElement('div');
+    newProj.classList.add('project-list');
+    newProjTitle.textContent = title;
+    newProjTitle.classList.add('project-title');
+    
+    // delete button project
+
+    const delProjectBtn = document.createElement('button');
+    delProjectBtn.classList.add('project-delete-button');
+    delProjectBtn.textContent = 'Delete';
+
+    newProj.appendChild(newProjTitle);
+    newProj.appendChild(delProjectBtn);
+
+    
+
+    
+
+    delProjectBtn.addEventListener('click', ()=>{
+        const allOption = document.querySelectorAll('#projectTitle .option-item');
+        allOption.forEach(option => {
+            if(option.value === projectObj.title){
+                option.remove();
+            };
+        });
+        const index = library.findIndex(item => item.title === newProj.title);
+        library.splice(index, 1);
+        newProj.remove();
+        
+        deleteStorage(projectObj, 'library');
+        
+    });
+
+    const projectObj = Project(title);
+
+        library.push(projectObj);
+        
+        sidebarContent.appendChild(newProj);
+
+    
+    
+    
+
+    
 
     newProj.addEventListener('click', ()=>{
     
