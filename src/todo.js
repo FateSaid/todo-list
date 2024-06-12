@@ -11,18 +11,21 @@ function setStorage(array, name){
     } else{
         const stringArray = localStorage.getItem(name);
         const convertArray = JSON.parse(stringArray);
-        if(name === 'library'){
+        if(convertArray === '[{"title":"Home"}]'){
+            if(name === 'library'){
+                convertArray.forEach(item => {
+                    newProject(item.title);
+                });
+            }else{
+                convertArray.forEach(item => {
+                    setInDom(item.title, item.description, item.priority, item.project);
+                })
+            }
             convertArray.forEach(item => {
-                newProject(item.title);
+                array.push(item);
             });
-        }else{
-            convertArray.forEach(item => {
-                setInDom(item.title, item.description, item.priority, item.project);
-            })
         }
-        convertArray.forEach(item => {
-            array.push(item);
-        });
+        
 
         
     }
@@ -88,6 +91,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         btnContainer.appendChild(editBtn);
         editBtn.addEventListener('click', (e)=>{
             e.preventDefault();
+            
             dialogEdit.showModal();
             
         });
@@ -358,9 +362,10 @@ function createProject(){
 
 
     addProjectBtn.addEventListener('click', (e)=>{
-        const textInputProject = document.getElementById('project').value;
+        const title = document.getElementById('project').value;
+        
         e.preventDefault();
-       newProject(textInputProject);
+       newProject(title);
        createOption();
        
        form.reset();
@@ -393,6 +398,7 @@ function createOption(){
 }
 
 
+
 function editEvent(){
     const editSubmit = document.getElementById('editSubmit');
         const form = document.querySelector('.form-edit');
@@ -403,14 +409,14 @@ function editEvent(){
             e.preventDefault();
             editList();
             form.reset();
-            
+            console.log(projectObj);
             
             dialogEdit.close();
             
         });
 
         function editList(){
-
+            
         
 
 
@@ -514,6 +520,7 @@ function newProject(title){
     const projectObj = Project(projectText.value);
     library.push(projectObj);
     setObjStorage(projectObj, 'library');
+    console.log(library);
 
     sidebarContent.appendChild(newProj);
 
