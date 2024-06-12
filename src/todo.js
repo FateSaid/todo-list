@@ -5,21 +5,59 @@ const toDoList = [];
 
 
 function setStorage(array, name){
-    let stringConvert = JSON.stringify(array);
-    localStorage.setItem(name, stringConvert);
+    if(!localStorage.getItem(name)){
+        let stringConvert = JSON.stringify(array);
+        localStorage.setItem(name, stringConvert);
+    } else{
+        const stringArray = localStorage.getItem(name);
+        const convertArray = JSON.parse(stringArray);
+        if(name === 'library'){
+            convertArray.forEach(item => {
+                newProject(item.title);
+            });
+        }else{
+            convertArray.forEach(item => {
+                setInDom(item.title, item.description, item.priority, item.project);
+            })
+        }
+        convertArray.forEach(item => {
+            array.push(item);
+        });
+
+        
+    }
+
+    
+
+    
+}
+
+function deleteStorage(obj, name){
+    const stringArray = localStorage.getItem(name);
+    const currentArray = JSON.parse(stringArray);
+    const index = currentArray.findIndex(item => item.title === obj.title);
+    currentArray.splice(index, 1);
+    const updatedArray = JSON.stringify(currentArray);
+    localStorage.setItem(name, updatedArray);
+
 }
 
 function setObjStorage(obj, array){
     const currentToDoList = localStorage.getItem(array);
     const arrayToDoList = JSON.parse(currentToDoList);
+    
     arrayToDoList.push(obj);
     const stringToDoList = JSON.stringify(arrayToDoList);
     localStorage.setItem(array, stringToDoList);
 
 }
 
+
+
 setStorage(library, 'library');
 setStorage(toDoList, 'toDoList');
+
+
 
 
 function Project(title){
@@ -212,12 +250,12 @@ function createProject(){
     const form = document.querySelector('.form-project');
     const addProjectBtn = document.querySelector('.add-project');
 
-    const sidebarContent = document.querySelector('.sidebar-content');
+    /* const sidebarContent = document.querySelector('.sidebar-content');
 
 
     const projectText = document.getElementById('project');
 
-    function newProject(){
+    /* function newProject(){
         const newProj = document.createElement('div');
         const newProjTitle = document.createElement('div');
         newProj.classList.add('project-list');
@@ -244,6 +282,8 @@ function createProject(){
                 if(option.value === newProj.textContent){
                     option.remove();
                 };
+                console.log(projectObj);
+                deleteStorage(projectObj, 'library');
             });
             const index = library.findIndex(item => item.title === newProj.title);
             library.splice(index, 1);
@@ -252,6 +292,8 @@ function createProject(){
             
             
         });
+
+        
 
 
         
@@ -263,7 +305,8 @@ function createProject(){
         const projectObj = Project(projectText.value);
         library.push(projectObj);
         
-
+        
+        setObjStorage(projectObj, 'library');
 
         
         newProj.addEventListener('click', ()=>{
@@ -288,11 +331,11 @@ function createProject(){
                     setInDom(list.title, list.description, list.dueDate, list.priority);
                 });
             });
-        }
+        } */
 
         
 
-    }
+    //} */
 
     
 
@@ -302,8 +345,9 @@ function createProject(){
 
 
     addProjectBtn.addEventListener('click', (e)=>{
+        const textInputProject = document.getElementById('project').value;
         e.preventDefault();
-       newProject();
+       newProject(textInputProject);
        createOption();
        
        form.reset();
@@ -413,6 +457,8 @@ function today(){
 
 function newProject(title){
 
+    const projectText = document.getElementById('project');
+
     const sidebarContent = document.querySelector('.sidebar-content');
 
 
@@ -446,9 +492,13 @@ function newProject(title){
         library.splice(index, 1);
         newProj.remove();
         
-        
+        deleteStorage(projectObj, 'library');
         
     });
+
+    const projectObj = Project(projectText.value);
+    library.push(projectObj);
+    setObjStorage(projectObj, 'library');
 
     sidebarContent.appendChild(newProj);
 
@@ -466,8 +516,11 @@ function newProject(title){
 }
     
 
+
+
+
     
 
 
 
-export{createList, createProject, editEvent, today, library, toDoList}
+export{createList, createProject, editEvent, today, setStorage, library, toDoList}
