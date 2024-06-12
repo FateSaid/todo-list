@@ -90,7 +90,7 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
         btnContainer.appendChild(editBtn);
         editBtn.addEventListener('click', (e)=>{
             e.preventDefault();
-            createOption();
+            
             dialogEdit.showModal();
             
         });
@@ -421,7 +421,7 @@ function editEvent(){
             e.preventDefault();
             editList();
             form.reset();
-            createOption();
+            
             
             dialogEdit.close();
             
