@@ -114,11 +114,24 @@ function setInDom(listTitle, listDescription, listDueDate, listPriority){
     delBtn.classList.add('delete-list-button');
     delBtn.textContent = 'Delete';
     delBtn.addEventListener('click', ()=>{
-        const index = toDoList.findIndex( item => item.project === totalDiv.project);
+        const listTitle = document.getElementById('title').value;
+
+        const listDescription = document.getElementById('description').value;
+        
+        const listDueDate = document.getElementById('dueDate').value;
+
+        const listPriority = document.getElementById('priority').value;
+
+        const listprojectTitle = document.getElementById('projectTitle').value;
+
+        const objList = List(listTitle, listDescription, listDueDate, listPriority, listprojectTitle);
+
+        const index = toDoList.findIndex( item => item.title === objList.title);
+        deleteStorage(objList, 'toDoList');
         toDoList.splice(index, 1);
         totalDiv.remove();
 
-
+        
         
         
     });
@@ -353,6 +366,8 @@ function createProject(){
        form.reset();
 
     });
+
+    today();
     
     
 }
