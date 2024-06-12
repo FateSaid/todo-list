@@ -409,7 +409,7 @@ function editEvent(){
             e.preventDefault();
             editList();
             form.reset();
-            console.log(projectObj);
+            
             
             dialogEdit.close();
             
@@ -417,12 +417,17 @@ function editEvent(){
 
         function editList(){
             
-        
+            
 
 
             let theListTitle = document.querySelector('.title');
             let editTitle = document.getElementById('title-edit').value;
             let indexTitle = toDoList.findIndex(item => item.title === theListTitle.textContent);
+
+            const obj = toDoList[indexTitle];
+
+            deleteStorage(obj, 'toDoList');
+
             toDoList[indexTitle].title = editTitle;
             theListTitle.textContent = editTitle;
 
@@ -443,6 +448,9 @@ function editEvent(){
             let indexPriority = toDoList.findIndex(item => item.priority === thePriority.textContent);
             toDoList[indexPriority].priority = editPriority;
             thePriority.textContent = editPriority;
+
+            const newObj = List(editTitle, editDueDate, editDescription, editPriority);
+            setObjStorage(newObj, 'toDoList');
 
 
             createOption();
