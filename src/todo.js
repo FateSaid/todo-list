@@ -3,7 +3,7 @@ import { format } from "date-fns";
 const library = [];
 const toDoList = [];
 
-                        
+                  
 
 function setStorage(array, name){
     if(!localStorage.getItem(name)){
@@ -22,9 +22,7 @@ function setStorage(array, name){
                     setInDom(item.title, item.description, item.priority, item.project);
                 })
             }
-            convertArray.forEach(item => {
-                array.push(item);
-            });
+           
         
         
 
@@ -247,6 +245,7 @@ function createList(){
         e.preventDefault();
         createOption();
         dialog.showModal();
+        console.log(library);
         
     });
 
@@ -356,7 +355,18 @@ function createProject(){
     //} */
 
     
+   
 
+    function homeEvent(){
+        const home = document.querySelector('.home');
+        home.addEventListener('click', ()=>{
+            const previousList = document.querySelectorAll('.list');
+            previousList.forEach(del => del.remove());
+            toDoList.forEach(list => {
+                setInDom(list.title, list.description, list.dueDate, list.priority);
+            });
+        });
+    }
     
 
     
@@ -374,6 +384,7 @@ function createProject(){
     });
 
     today();
+    homeEvent();
     
     
 }
@@ -410,7 +421,7 @@ function editEvent(){
             e.preventDefault();
             editList();
             form.reset();
-            
+            createOption();
             
             dialogEdit.close();
             
@@ -592,7 +603,7 @@ function newProjectStorage(title){
         const index = library.findIndex(item => item.title === newProj.title);
         library.splice(index, 1);
         newProj.remove();
-        
+        console.log(library);
         deleteStorage(projectObj, 'library');
         
     });

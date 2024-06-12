@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Calistoga';
+    src: url('./calistoga.woff2') format('woff2'),
+    url('./calistoga.woff') format('woff');
+    font-weight:600;
+    font-style: normal;
+}
+
+h2{
+    font-family: 'Calistoga';
+}
+
 html, body{
     height: 100%;
     display: flex;
@@ -14,6 +26,7 @@ header, footer{
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 20px;
     background-color:#57534e;
+    color:white;
 }
 
 .container{
