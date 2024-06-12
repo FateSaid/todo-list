@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+<script defer src="main.js"></script></head>
+<body>
+    <header>
+        To-Do List
+    </header>
+    <div class="container">
+        
+        <div class="sidebar-header">
+            <h2>Sidebar</h2>
+                <div class="project-header">
+                
+                    <form class="form-project">
+                        <label for="project">Project Name</label>
+                        <input type="text" id="project">
+                        <button class="add-project">Add Project</button>
+                    </form>
+                    
+                </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="main-content-header">
+                <div class="addList">
+                    <h2>main-content</h2>
+                    <button class="add">add</button>
+                </div>
+            </div>
+         </div>   
+        <div class="sidebar-content">
+            <div class="project-list home">
+                Home
+            </div>
+            <div class="today">
+                Today
+            </div>
+        </div>
+        <div class="main-content-list">
+                <div class="main-content-list-item">
+                    mainlistcontent</div>
+        </div>
+        
+        
+    </div>
+    <footer>
+        Footer
+    </footer>
+    <dialog class="dialog-list">
+        <form action="https://httpbin.org/post" method="post" class="form-list">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" >
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description" maxlength="50"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" >
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <label for="projectTitle">Project Title</label>
+                <select name="project-title" id="projectTitle">
+                
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+                <button type="cancel">Cancel</button>
+            </div> 
+        </form>
+    </dialog>
+    <dialog class="dialog-list-edit">
+        <form action="https://httpbin.org/post" method="post" class="form-list form-edit">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title-edit" >
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea name="description" id="description-edit" maxlength="20"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate-edit" >
+            </div>
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select name="priority" id="priority-edit">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                
+            </div>
+            
+            <div class="form-group">
+                <button id="editSubmit" type="button">Submit</button>
+                <button id="editCancel">Cancel</button>
+            </div> 
+        </form>
+    </dialog>
+    
+</body>
+</html>
